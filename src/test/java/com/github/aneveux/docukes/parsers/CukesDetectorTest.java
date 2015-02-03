@@ -14,6 +14,9 @@ public class CukesDetectorTest {
 		assertFalse("Non Cukes is detected as a Cukes",
 				CukesDetector.isCukes(TestResourcesHelper
 						.getTestResource(TestClassesNames.WithoutCukes)));
+		assertFalse("Non Cukes is detected as a Cukes",
+				CukesDetector.isCukes(TestResourcesHelper
+						.getTestResource(TestClassesNames.WithoutCukesAgain)));
 		assertTrue("Cuke is detected as a non Cuke",
 				CukesDetector.isCukes(TestResourcesHelper
 						.getTestResource(TestClassesNames.WithCukesAndDoc)));
