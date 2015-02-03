@@ -66,6 +66,8 @@
 				<directory>src/test/resources</directory>
 				<includes>
 					<include>**/*.java</include>
+					<include>**/*.txt</include>
+					<include>**/*.xml</include>
 				</includes>
 			</testResource>
 		</testResources>
