@@ -7,11 +7,11 @@ import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster.model.source.Import;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 
-public class CukesAnalyzer {
+public class CukesDetector {
 
 	public static final String CUKES_IMPORT_IDENTIFIER = "cucumber.api.java";
 
-	public boolean isCukes(File javaClazz) {
+	public static boolean isCukes(File javaClazz) {
 		JavaClassSource clazz;
 		try {
 			clazz = Roaster.parse(JavaClassSource.class, javaClazz);
