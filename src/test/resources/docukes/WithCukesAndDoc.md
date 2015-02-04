@@ -8,7 +8,7 @@ An awesome class containing stuff.
 
 ##Stepdefs
 
-###i_do_something_with
+###i _do _something _with
 
 __Syntax:__ `When: "^I do something with \"([^\"]*)\"$"`
 
@@ -16,7 +16,7 @@ __Documentation:__
 
 When I do something with a parameter
 
-###i_call_something_with_and
+###i _call _something _with _and
 
 __Syntax:__ `Then: "^I call something with \"(.*)\" and (\"?.*\"?)$"`
 
@@ -24,7 +24,7 @@ __Documentation:__
 
 Then I call something with various parameters
 
-###this_property
+###this _property
 
 __Syntax:__ `Given: "^this property \"(.*)\"$"`
 

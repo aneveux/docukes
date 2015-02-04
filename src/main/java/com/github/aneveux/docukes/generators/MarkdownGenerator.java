@@ -65,13 +65,13 @@ public class MarkdownGenerator {
 			// searching for author
 			res = res.replace("{author}", clazz.getJavaDoc().getTagNames()
 					.contains("@author") ? clazz.getJavaDoc()
-							.getTags("@author").get(0).getValue() : "unknown");
+					.getTags("@author").get(0).getValue() : "unknown");
 			// searching for version
 			res = res
 					.replace(
 							"{version}",
 							clazz.getJavaDoc().getTagNames()
-							.contains("@version") ? clazz.getJavaDoc()
+									.contains("@version") ? clazz.getJavaDoc()
 									.getTags("@version").get(0).getValue()
 									: "unknown");
 			res = res.replace("{javadoc}", clazz.getJavaDoc().getText());
@@ -91,7 +91,8 @@ public class MarkdownGenerator {
 
 	protected String generateStepdef(MethodSource<JavaClassSource> method) {
 		String res;
-		res = template_stepdefs.replace("{method}", method.getName());
+		res = template_stepdefs.replace("{method}",
+				splitCamelCase(method.getName()));
 		for (final AnnotationSource<JavaClassSource> annotation : method
 				.getAnnotations())
 			if (annotation.getQualifiedName().startsWith(
