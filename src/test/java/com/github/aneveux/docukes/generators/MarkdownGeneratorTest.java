@@ -12,36 +12,60 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.aneveux.docukes.parsers.CukesParser;
-import com.github.aneveux.docukes.parsers.TestResourcesHelper;
-import com.github.aneveux.docukes.parsers.TestResourcesHelper.Resource;
+import com.github.aneveux.docukes.parsers.TestResourcesFinder;
+import com.github.aneveux.docukes.parsers.TestResourcesFinder.Resource;
 
+/**
+ * Unit tests for MarkdownGenerator
+ *
+ * @author aneveux
+ * @version 1.0
+ *
+ */
 public class MarkdownGeneratorTest {
 
+	/**
+	 * Instance of a MarkdownGenerator to be tested
+	 */
 	public MarkdownGenerator generator;
 
+	/**
+	 * Allows to setup the generator
+	 */
 	@Before
 	public void setUp() {
 		generator = new MarkdownGenerator(Paths.get("").toFile());
 	}
 
+	/**
+	 * Testing the
+	 * {@link MarkdownGenerator#write(org.jboss.forge.roaster.model.source.JavaClassSource, java.util.List, boolean)}
+	 * method
+	 *
+	 * Please note the test is... actually not a test. I'll (probably) fix that
+	 * later.
+	 */
 	@Test
 	public void testWrite() {
 		CukesParser parser = new CukesParser(
-				TestResourcesHelper.getTestResource(Resource.WithCukesAndDoc,
-						TestResourcesHelper.JAVA_EXTENSION));
+				TestResourcesFinder.getTestResource(Resource.WithCukesAndDoc,
+						TestResourcesFinder.JAVA_EXTENSION));
 		generator.write(parser.getClazz(), parser.getCukesMethods(), false);
-		parser = new CukesParser(TestResourcesHelper.getTestResource(
+		parser = new CukesParser(TestResourcesFinder.getTestResource(
 				Resource.WithCukesAndDocAndStuff,
-				TestResourcesHelper.JAVA_EXTENSION));
+				TestResourcesFinder.JAVA_EXTENSION));
 		generator.write(parser.getClazz(), parser.getCukesMethods(), false);
-		parser = new CukesParser(TestResourcesHelper.getTestResource(
-				Resource.WithCukesAndStuff, TestResourcesHelper.JAVA_EXTENSION));
+		parser = new CukesParser(TestResourcesFinder.getTestResource(
+				Resource.WithCukesAndStuff, TestResourcesFinder.JAVA_EXTENSION));
 		generator.write(parser.getClazz(), parser.getCukesMethods(), false);
-		parser = new CukesParser(TestResourcesHelper.getTestResource(
-				Resource.WithOnlyCukes, TestResourcesHelper.JAVA_EXTENSION));
+		parser = new CukesParser(TestResourcesFinder.getTestResource(
+				Resource.WithOnlyCukes, TestResourcesFinder.JAVA_EXTENSION));
 		generator.write(parser.getClazz(), parser.getCukesMethods(), false);
 	}
 
+	/**
+	 * Testing the {@link MarkdownGenerator#splitCamelCase(String)} method
+	 */
 	@Test
 	public void testSplitCamelCase() {
 		assertEquals("Split Camel Case isn't as expected", "A Perfect Robot",
@@ -55,13 +79,18 @@ public class MarkdownGeneratorTest {
 				generator.splitCamelCase("Something"));
 	}
 
+	/**
+	 * Testing the
+	 * {@link MarkdownGenerator#generateContent(org.jboss.forge.roaster.model.source.JavaClassSource, java.util.List, boolean)}
+	 * method
+	 */
 	@Test
 	public void testGenerateContent() {
 		final CukesParser parser = new CukesParser(
-				TestResourcesHelper.getTestResource(Resource.WithCukesAndDoc,
-						TestResourcesHelper.JAVA_EXTENSION));
-		final File testResource = TestResourcesHelper.getTestResource(
-				Resource.WithCukesAndDoc, TestResourcesHelper.MD_EXTENSION);
+				TestResourcesFinder.getTestResource(Resource.WithCukesAndDoc,
+						TestResourcesFinder.JAVA_EXTENSION));
+		final File testResource = TestResourcesFinder.getTestResource(
+				Resource.WithCukesAndDoc, TestResourcesFinder.MD_EXTENSION);
 		String expected = "";
 		try {
 			final byte[] encoded = Files.readAllBytes(Paths.get(testResource

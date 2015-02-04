@@ -1,5 +1,7 @@
 package com.github.aneveux.docukes.parsers;
 
+import static com.github.aneveux.docukes.Constants.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -7,10 +9,26 @@ import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster.model.source.Import;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 
+/**
+ * Simple helper allowing to detect if a Java class actually contains something
+ * related to Cukes.
+ *
+ * It scans the imports for finding out if a class is a cuke or not. It maybe is
+ * not the best solution ever, but at least it'll do the trick for now...
+ *
+ * @author aneveux
+ * @version 1.0
+ *
+ */
 public class CukesDetector {
 
-	public static final String CUKES_IMPORT_IDENTIFIER = "cucumber.api.java";
-
+	/**
+	 * Simply detects if a Java class contains some cukes related stuff
+	 *
+	 * @param javaClazz
+	 *            class that needs to be scanned
+	 * @return true if it's a cukes
+	 */
 	public static boolean isCukes(File javaClazz) {
 		JavaClassSource clazz;
 		try {
@@ -19,11 +37,8 @@ public class CukesDetector {
 			e.printStackTrace();
 			return false;
 		}
-		// We consider a class is actually containing cucumber stepdefs if it
-		// uses some cucumber related imports...
-		// Could be improved, but that'll do the trick for now.
 		for (final Import importz : clazz.getImports())
-			if (importz.getPackage().startsWith(CUKES_IMPORT_IDENTIFIER))
+			if (importz.getPackage().startsWith(CUKES_IDENTIFIER))
 				return true;
 		return false;
 	}

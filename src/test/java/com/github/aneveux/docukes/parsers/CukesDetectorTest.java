@@ -5,36 +5,46 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.github.aneveux.docukes.parsers.TestResourcesHelper.Resource;
+import com.github.aneveux.docukes.parsers.TestResourcesFinder.Resource;
 
+/**
+ * Unit tests for CukesDetector
+ *
+ * @author aneveux
+ * @version 1.0
+ *
+ */
 public class CukesDetectorTest {
 
+	/**
+	 * Testing {@link CukesDetector#isCukes(java.io.File)} method
+	 */
 	@Test
 	public void testIsCukes() {
 		assertFalse("Non Cukes is detected as a Cukes",
-				CukesDetector.isCukes(TestResourcesHelper.getTestResource(
+				CukesDetector.isCukes(TestResourcesFinder.getTestResource(
 						Resource.WithoutCukes,
-						TestResourcesHelper.JAVA_EXTENSION)));
+						TestResourcesFinder.JAVA_EXTENSION)));
 		assertFalse("Non Cukes is detected as a Cukes",
-				CukesDetector.isCukes(TestResourcesHelper.getTestResource(
+				CukesDetector.isCukes(TestResourcesFinder.getTestResource(
 						Resource.WithoutCukesAgain,
-						TestResourcesHelper.JAVA_EXTENSION)));
+						TestResourcesFinder.JAVA_EXTENSION)));
 		assertTrue("Cuke is detected as a non Cuke",
-				CukesDetector.isCukes(TestResourcesHelper.getTestResource(
+				CukesDetector.isCukes(TestResourcesFinder.getTestResource(
 						Resource.WithCukesAndDoc,
-						TestResourcesHelper.JAVA_EXTENSION)));
+						TestResourcesFinder.JAVA_EXTENSION)));
 		assertTrue("Cuke is detected as a non Cuke",
-				CukesDetector.isCukes(TestResourcesHelper.getTestResource(
+				CukesDetector.isCukes(TestResourcesFinder.getTestResource(
 						Resource.WithOnlyCukes,
-						TestResourcesHelper.JAVA_EXTENSION)));
+						TestResourcesFinder.JAVA_EXTENSION)));
 		assertTrue("Cuke is detected as a non Cuke",
-				CukesDetector.isCukes(TestResourcesHelper.getTestResource(
+				CukesDetector.isCukes(TestResourcesFinder.getTestResource(
 						Resource.WithCukesAndDocAndStuff,
-						TestResourcesHelper.JAVA_EXTENSION)));
+						TestResourcesFinder.JAVA_EXTENSION)));
 		assertTrue("Cuke is detected as a non Cuke",
-				CukesDetector.isCukes(TestResourcesHelper.getTestResource(
+				CukesDetector.isCukes(TestResourcesFinder.getTestResource(
 						Resource.WithCukesAndStuff,
-						TestResourcesHelper.JAVA_EXTENSION)));
+						TestResourcesFinder.JAVA_EXTENSION)));
 	}
 
 }
