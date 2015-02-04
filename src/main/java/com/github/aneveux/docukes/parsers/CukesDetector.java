@@ -17,11 +17,12 @@
  */
 package com.github.aneveux.docukes.parsers;
 
-import static com.github.aneveux.docukes.Constants.*;
+import static com.github.aneveux.docukes.Constants.CUKES_IDENTIFIER;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import org.jboss.forge.roaster.ParserException;
 import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster.model.source.Import;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
@@ -52,6 +53,9 @@ public class CukesDetector {
 			clazz = Roaster.parse(JavaClassSource.class, javaClazz);
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
+			return false;
+		} catch (final ParserException pe) {
+			System.out.println(javaClazz.getName() + " isn't a java class!");
 			return false;
 		}
 		for (final Import importz : clazz.getImports())
