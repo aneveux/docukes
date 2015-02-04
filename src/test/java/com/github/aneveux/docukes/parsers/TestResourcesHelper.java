@@ -10,10 +10,11 @@ public class TestResourcesHelper {
 
 	public static final String JAVA_EXTENSION = ".java";
 	public static final String PHP_EXTENSION = ".php";
+	public static final String MD_EXTENSION = ".md";
 
 	private static File testResourcesFolder;
 
-	enum TestClassesNames {
+	public enum Resource {
 		WithCukesAndDoc, WithCukesAndDocAndStuff, WithCukesAndStuff, WithOnlyCukes, WithoutCukes, WithoutCukesAgain
 	}
 
@@ -27,12 +28,11 @@ public class TestResourcesHelper {
 		return testResourcesFolder;
 	}
 
-	public static File getTestResource(TestClassesNames name) {
+	public static File getTestResource(Resource name, String extension) {
 		List<File> files = new ArrayList<File>();
-		files = ClazzLocator
-				.explore(testResourcesFolder, files, JAVA_EXTENSION);
+		files = ClazzLocator.explore(testResourcesFolder, files, extension);
 		for (final File f : files)
-			if (f.getName().equalsIgnoreCase(name.toString() + JAVA_EXTENSION))
+			if (f.getName().equalsIgnoreCase(name.toString() + extension))
 				return f;
 		return null;
 	}

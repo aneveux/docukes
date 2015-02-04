@@ -23,6 +23,10 @@ public class CukesParser {
 		}
 	}
 
+	public JavaClassSource getClazz() {
+		return clazz;
+	}
+
 	public List<MethodSource<JavaClassSource>> getCukesMethods() {
 		final List<MethodSource<JavaClassSource>> methods = new ArrayList<MethodSource<JavaClassSource>>();
 		// Solution using loops and not direct types of annotations because of

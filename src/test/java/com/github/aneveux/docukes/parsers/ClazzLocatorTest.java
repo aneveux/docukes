@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.github.aneveux.docukes.parsers.TestResourcesHelper.TestClassesNames;
+import com.github.aneveux.docukes.parsers.TestResourcesHelper.Resource;
 
 public class ClazzLocatorTest {
 
@@ -20,7 +20,7 @@ public class ClazzLocatorTest {
 				TestResourcesHelper.JAVA_EXTENSION);
 		assertEquals(
 				"Test resources directory doesn't contain the correct amount of Java files",
-				TestResourcesHelper.TestClassesNames.values().length,
+				TestResourcesHelper.Resource.values().length,
 				files.size());
 	}
 
@@ -42,7 +42,7 @@ public class ClazzLocatorTest {
 				TestResourcesHelper.getTestResourcesFolder(), files,
 				TestResourcesHelper.JAVA_EXTENSION);
 		boolean found = false;
-		for (final TestClassesNames name : TestResourcesHelper.TestClassesNames
+		for (final Resource name : TestResourcesHelper.Resource
 				.values()) {
 			for (final File file : files)
 				found |= file.getName().equalsIgnoreCase(
