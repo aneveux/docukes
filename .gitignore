@@ -1,4 +1,14 @@
-target
+*.class
+# Package Files #
+*.jar
+*.war
+*.ear
+#Eclispe stuff
 .classpath
 .project
 .settings
+target/
+bin/
+#IntellijIDEA stuff
+*.iml
+.idea
